@@ -1953,7 +1953,7 @@ video {
 }
 
 .bg-home {
-  background-image: url('/assets/bg.png');
+  background-image: url('./assets/bg.png');
 }
 
 .decoration-slice {
@@ -2169,13 +2169,8 @@ video {
   line-height: 2rem;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-.text-\[29px\] {
-  font-size: 29px;
+.text-\[27px\] {
+  font-size: 27px;
 }
 
 .text-lg {
@@ -2191,22 +2186,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[28px\] {
-  font-size: 28px;
-}
-
-.text-\[2px\] {
-  font-size: 2px;
-}
-
-.text-\[28\.5px\] {
-  font-size: 28.5px;
-}
-
-.text-\[27px\] {
-  font-size: 27px;
 }
 
 .font-bold {
