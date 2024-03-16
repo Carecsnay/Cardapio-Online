@@ -1,7 +1,8 @@
 const modal = document.querySelector('#modal');
 const menu = document.querySelector('#menu');
 const cartBTN = document.querySelector('#cart-btn');
-const cartItemsContainer = document.querySelector('#card-items');
+const cartItemsContainer = document.querySelector('#cart-items');
+console.log(cartItemsContainer)
 const cartTotal = document.querySelector('#cart-total');
 const checkoutBTN = document.querySelector('#checkout');
 const closeModalBTN = document.querySelector('#close-modal-btn');
@@ -62,8 +63,8 @@ function updateModal() {
         <div>
             <div>
                 <p>${item.name}</p>
-                <p>${item.quantity}</p>
-                <p>$R$ ${item.price}</p>
+                <p>Quantidade: ${item.quantity}</p>
+                <p>Valor: R$${item.price}</p>
             </div>
 
             <div>
