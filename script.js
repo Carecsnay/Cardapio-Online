@@ -2,7 +2,6 @@ const modal = document.querySelector('#modal');
 const menu = document.querySelector('#menu');
 const cartBTN = document.querySelector('#cart-btn');
 const cartItemsContainer = document.querySelector('#cart-items');
-console.log(cartItemsContainer)
 const cartTotal = document.querySelector('#cart-total');
 const checkoutBTN = document.querySelector('#checkout');
 const closeModalBTN = document.querySelector('#close-modal-btn');
@@ -59,21 +58,29 @@ function updateModal() {
 
     cart.forEach(item => {
         const cartItemElement = document.createElement('div');
+        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
+
         cartItemElement.innerHTML = `
-        <div>
+        <div class="flex items-center justify-between" >
             <div>
-                <p>${item.name}</p>
+                <p class="font-bold ">${item.name}</p>
                 <p>Quantidade: ${item.quantity}</p>
-                <p>Valor: R$${item.price}</p>
+                <p class="font-medium mt-2">Valor Unitário: R$ ${item.price}</p>
             </div>
 
-            <div>
-                <button>
-                    Remover
-                </button>
-            </div>
+            <button>
+                Remover
+            </button>
         </div>
         `
+
+        total += item.price * item.quantity;
+
+
         cartItemsContainer.appendChild(cartItemElement);
     })
+    cartTotal.textContent = total.toLocaleString("pt-BR", {
+        style: 'currency',
+        currency: 'BRL'
+    });
 }
