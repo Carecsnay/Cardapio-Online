@@ -12,3 +12,13 @@ const warnInput = document.querySelector('#address-warn');
 cartBTN.addEventListener('click', () => {
     modal.style.display = 'flex';
 });
+
+modal.addEventListener('click', (e) => {
+    if(e.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+closeModalBTN.addEventListener('click', () => {
+    modal.style.display = "none";
+});
