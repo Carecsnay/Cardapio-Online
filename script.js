@@ -55,6 +55,7 @@ function addToCart(name, price) {
 function updateModal() {
     cartItemsContainer.innerHTML = "";
     let total = 0;
+    let counterTotal = 0;
 
     cart.forEach(item => {
         const cartItemElement = document.createElement('div');
@@ -75,12 +76,13 @@ function updateModal() {
         `
 
         total += item.price * item.quantity;
-
+        counterTotal += item.quantity;
 
         cartItemsContainer.appendChild(cartItemElement);
     })
+    cardCounter.innerHTML = counterTotal;
     cartTotal.textContent = total.toLocaleString("pt-BR", {
         style: 'currency',
         currency: 'BRL'
-    });
+    });   
 }
