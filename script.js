@@ -9,6 +9,8 @@ const cardCounter = document.querySelector('#cart-count');
 const addressInput = document.querySelector('#address');
 const warnInput = document.querySelector('#address-warn');
 
+let cart = [];
+
 cartBTN.addEventListener('click', () => {
     modal.style.display = 'flex';
 });
@@ -28,7 +30,24 @@ menu.addEventListener('click', (e) => {
     
     if (parentButton) {
         const name = parentButton.getAttribute('data-name');
-        const price = parseFloat(parentButton.getAttribute('data-price'));
-        
+        const price = parseFloat(parentButton.getAttribute('data-price')).toFixed(2);
+
+        addToCart(name,price);
     }
 });
+
+function addToCart (name, price){
+    const existingItem = cart.find(item => item.name === name)
+
+    if(existingItem) {
+        existingItem.quantity ++;
+        return;
+    }
+
+    cart.push({
+        name,
+        price,
+        quantity: 1,
+    });
+}
+
