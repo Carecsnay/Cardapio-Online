@@ -9,3 +9,6 @@ const cardCounter = document.querySelector('#cart-count');
 const addressInput = document.querySelector('#address');
 const warnInput = document.querySelector('#address-warn');
 
+cartBTN.addEventListener('click', () => {
+    modal.style.display = 'flex';
+});
