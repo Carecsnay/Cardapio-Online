@@ -145,20 +145,20 @@ function customAlert(title, message) {
     });
 
     var customAlertContent = document.createElement("div");
-    customAlertContent.className = "bg-white rounded-lg px-6 py-10 max-w-md absolute";
+    customAlertContent.className = "bg-white rounded-lg px-4 py-9 max-w-[90%] sm:max-w-md absolute";
 
     var customAlertTitle = document.createElement("h2");
-    customAlertTitle.className = "text-lg font-semibold mb-4";
+    customAlertTitle.className = "text-lg font-semibold mb-2";
     customAlertTitle.innerHTML = title;
 
     var customAlertMessage = document.createElement("p");
-    customAlertMessage.className = "text-gray-700 mb-4";
+    customAlertMessage.className = "text-gray-700 mb-2";
     customAlertMessage.innerHTML = message;
 
     var okButton = document.createElement("button");
     okButton.className = "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600";
     
-    var timer = 5000;
+    var timer = 5;
     okButton.innerHTML = "OK (" + timer + "s)";
     
     var timerInterval = setInterval(function() {
