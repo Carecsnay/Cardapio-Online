@@ -52,19 +52,21 @@ function addToCart(name, price) {
     updateModal()
 }
 
+// Atualize a função updateModal para adicionar itens ao contêiner do carrinho
 function updateModal() {
-    cartItemsContainer.innerHTML = "";
+    cartItemsContainer.innerHTML = ""; // Limpa o contêiner antes de adicionar novos itens
     let total = 0;
     let counterTotal = 0;
 
     cart.forEach(item => {
         const cartItemElement = document.createElement('div');
-        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col", "overflow-y-auto");
+        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
 
         cartItemElement.innerHTML = `
-        <div class="flex items-center justify-between" >
+        
+        <div class="flex items-center justify-between">
             <div>
-                <p class="font-bold ">${item.name}</p>
+                <p class="font-bold">${item.name}</p>
                 <p>Quantidade: ${item.quantity}</p>
                 <p class="font-medium mt-2">Valor Unitário: R$ ${item.price}</p>
             </div>
@@ -73,16 +75,18 @@ function updateModal() {
                 Remover
             </button>
         </div>
-        `
+        `;
 
         total += item.price * item.quantity;
         counterTotal += item.quantity;
 
-        cartItemsContainer.appendChild(cartItemElement);
-    })
+        cartItemsContainer.appendChild(cartItemElement); // Adiciona o item ao contêiner do carrinho
+    });
+
+    // Atualize o contador do carrinho e o total do carrinho
     cardCounter.innerHTML = counterTotal;
     cartTotal.textContent = total.toLocaleString("pt-BR", {
         style: 'currency',
         currency: 'BRL'
-    });   
+    });
 }

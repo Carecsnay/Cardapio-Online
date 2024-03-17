@@ -898,18 +898,6 @@ video {
   max-height: 24rem;
 }
 
-.max-h-80 {
-  max-height: 20rem;
-}
-
-.max-h-2 {
-  max-height: 0.5rem;
-}
-
-.max-h-24 {
-  max-height: 6rem;
-}
-
 .w-28 {
   width: 7rem;
 }
@@ -2645,6 +2633,33 @@ video {
 
 body{
   background-color: #F5F6F8;
+}
+
+:root{
+  --primary: rgba(0, 0, 0, 0.8);
+  --secondary: rgba(255, 0, 0, 0.8);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 14px;
+  border: 3px solid var(--primary);
 }
 
 @media (min-width: 640px) {
