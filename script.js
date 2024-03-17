@@ -93,7 +93,7 @@ cartItemsContainer.addEventListener('click', (e) => {
         const name = e.target.getAttribute("data-name");
         removeItemCart(name);
     }
-})
+});
 
 function removeItemCart(name) {
     const index = cart.findIndex(item => item.name === name);
@@ -111,3 +111,26 @@ function removeItemCart(name) {
         }
     }
 }
+
+addressInput.addEventListener('input', (e) => {
+    let inputValue = e.target.value;
+    
+    if (inputValue !== "") {
+        addressInput.classList.remove("border-red-500");
+        warnInput.classList.add('hidden');
+    }
+    
+});
+
+checkoutBTN.addEventListener('click', () => {
+    if(cart.length === 0) {
+        alert('Seu carrinho está vazio. Por favor, adicione itens ao seu carrinho antes de finalizar o pedido.')
+        return;
+    }
+    if(addressInput.value === "") {
+        warnInput.classList.remove('hidden');
+        addressInput.classList.add("border-red-500");
+        return
+    }
+});
+
