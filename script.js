@@ -124,9 +124,22 @@ addressInput.addEventListener('input', (e) => {
 
 checkoutBTN.addEventListener('click', () => {
     if(cart.length === 0) {
-        customAlert("Atenção","Seu carrinho está vazio. Por favor, adicione itens ao seu carrinho antes de finalizar o pedido.")
+        Toastify({
+            text: "⚠️ Seu carrinho está vazio. Por favor, adicione itens ao seu carrinho antes de finalizar o pedido.",
+            style: {
+                background: "#ef4444",
+                'max-width': '90%',
+            },
+            stopOnFocus: true,
+            position: "right",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            duration: 3000
+        }).showToast();
         return;
     }
+    
     if(addressInput.value === "") {
         warnInput.classList.remove('hidden');
         addressInput.classList.add("border-red-500");
@@ -147,17 +160,20 @@ function customAlert(title, message) {
     var customAlertContent = document.createElement("div");
     customAlertContent.className = "bg-white rounded-lg px-4 py-9 max-w-[90%] sm:max-w-md absolute";
 
+    var horarioFuncionamento = document.createElement("p");
+    horarioFuncionamento.className = "flex items-center justify-center text-red-600 text-sm mb-2 font-bold";
+    horarioFuncionamento.innerHTML = "Horário de Funcionamento: Seg a Dom 18:00 às 22:00";
+
     var customAlertTitle = document.createElement("h2");
-    customAlertTitle.className = "text-lg font-semibold mb-2";
+    customAlertTitle.className = "flex items-center justify-center text-lg font-semibold mb-2";
     customAlertTitle.innerHTML = title;
 
     var customAlertMessage = document.createElement("p");
-    customAlertMessage.className = "text-gray-700 mb-2";
+    customAlertMessage.className = "flex items-center justify-center text-gray-700 mb-2";
     customAlertMessage.innerHTML = message;
 
     var okButton = document.createElement("button");
-    okButton.className = "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600";
-    
+    okButton.className = "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 flex items-center justify-center mx-auto"; // Adicionando classes para centralizar o botão
     var timer = 5;
     okButton.innerHTML = "OK (" + timer + "s)";
     
@@ -177,6 +193,7 @@ function customAlert(title, message) {
 
     customAlertContent.appendChild(customAlertTitle);
     customAlertContent.appendChild(customAlertMessage);
+    customAlertContent.appendChild(horarioFuncionamento); // Adicionando o horário de funcionamento antes do título
     customAlertContent.appendChild(okButton);
 
     customAlertBox.appendChild(customAlertOverlay);
@@ -186,4 +203,6 @@ function customAlert(title, message) {
 }
 
 
+
+customAlert("⚠️ Comunicado ⚠️","Estamos fechados no momento, voltamos em breve!")
 //106:57
