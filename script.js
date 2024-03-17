@@ -124,7 +124,7 @@ addressInput.addEventListener('input', (e) => {
 
 checkoutBTN.addEventListener('click', () => {
     if(cart.length === 0) {
-        alert('Seu carrinho está vazio. Por favor, adicione itens ao seu carrinho antes de finalizar o pedido.')
+        customAlert("Atenção","Seu carrinho está vazio. Por favor, adicione itens ao seu carrinho antes de finalizar o pedido.")
         return;
     }
     if(addressInput.value === "") {
@@ -134,3 +134,56 @@ checkoutBTN.addEventListener('click', () => {
     }
 });
 
+function customAlert(title, message) {
+    var customAlertBox = document.createElement("div");
+    customAlertBox.className = "fixed inset-0 flex items-center justify-center";
+
+    var customAlertOverlay = document.createElement("div");
+    customAlertOverlay.className = "fixed inset-0 bg-gray-900 opacity-50";
+    customAlertOverlay.addEventListener('click', function() {
+        document.body.removeChild(customAlertBox);
+    });
+
+    var customAlertContent = document.createElement("div");
+    customAlertContent.className = "bg-white rounded-lg p-8 max-w-md absolute";
+
+    var customAlertTitle = document.createElement("h2");
+    customAlertTitle.className = "text-lg font-semibold mb-4";
+    customAlertTitle.innerHTML = title;
+
+    var customAlertMessage = document.createElement("p");
+    customAlertMessage.className = "text-gray-700 mb-4";
+    customAlertMessage.innerHTML = message;
+
+    var okButton = document.createElement("button");
+    okButton.className = "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600";
+    
+    var timer = 5;
+    okButton.innerHTML = "OK (" + timer + "s)";
+    
+    var timerInterval = setInterval(function() {
+        timer--;
+        okButton.innerHTML = "OK (" + timer + "s)";
+        if (timer === 0) {
+            clearInterval(timerInterval);
+            document.body.removeChild(customAlertBox);
+        }
+    }, 1000);
+
+    okButton.onclick = function() {
+        clearInterval(timerInterval);
+        document.body.removeChild(customAlertBox);
+    };
+
+    customAlertContent.appendChild(customAlertTitle);
+    customAlertContent.appendChild(customAlertMessage);
+    customAlertContent.appendChild(okButton);
+
+    customAlertBox.appendChild(customAlertOverlay);
+    customAlertBox.appendChild(customAlertContent);
+
+    document.body.appendChild(customAlertBox);
+}
+
+
+//106:57
