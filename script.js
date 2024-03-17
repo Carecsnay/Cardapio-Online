@@ -204,5 +204,5 @@ function customAlert(title, message) {
 
 
 
-customAlert("⚠️ Comunicado ⚠️","Estamos fechados no momento, voltamos em breve!")
+// customAlert("⚠️ Comunicado ⚠️","Estamos fechados no momento, voltamos em breve!")
 //106:57
