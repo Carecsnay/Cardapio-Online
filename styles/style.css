@@ -8,7 +8,7 @@ body{
 
 :root{
     --primary: rgba(0, 0, 0, 0.8);
-    --secondary: rgba(255, 0, 0, 0.8);
+    --secondary: rgb(239, 68, 68);
 }
 * {
     scrollbar-width: thin;

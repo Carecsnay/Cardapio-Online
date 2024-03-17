@@ -51,10 +51,8 @@ function addToCart(name, price) {
 
     updateModal()
 }
-
-// Atualize a função updateModal para adicionar itens ao contêiner do carrinho
 function updateModal() {
-    cartItemsContainer.innerHTML = ""; // Limpa o contêiner antes de adicionar novos itens
+    cartItemsContainer.innerHTML = "";
     let total = 0;
     let counterTotal = 0;
 
@@ -71,7 +69,7 @@ function updateModal() {
                 <p class="font-medium mt-2">Valor Unitário: R$ ${item.price}</p>
             </div>
 
-            <button>
+            <button class="item-modal-remove" data-name="${item.name}">
                 Remover
             </button>
         </div>
@@ -80,13 +78,37 @@ function updateModal() {
         total += item.price * item.quantity;
         counterTotal += item.quantity;
 
-        cartItemsContainer.appendChild(cartItemElement); // Adiciona o item ao contêiner do carrinho
+        cartItemsContainer.appendChild(cartItemElement);
     });
 
-    // Atualize o contador do carrinho e o total do carrinho
     cardCounter.innerHTML = counterTotal;
     cartTotal.textContent = total.toLocaleString("pt-BR", {
         style: 'currency',
         currency: 'BRL'
     });
+}
+
+
+cartItemsContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('item-modal-remove')) {
+        const name = e.target.getAttribute("data-name");
+        removeItemCart(name);
+    }
+})
+
+function removeItemCart(name) {
+    const index = cart.findIndex(item => item.name === name);
+
+    if (index !== -1) {
+        const item = cart[index];
+
+        if (item.quantity > 1) {
+            item.quantity -= 1;
+            updateModal();
+            return;
+        } else {
+            cart.splice(index, 1);
+            updateModal();
+        }
+    }
 }
