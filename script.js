@@ -57,25 +57,25 @@ function updateModal() {
     let counterTotal = 0;
 
     cart.forEach(item => {
+        const totalPerItem = item.price * item.quantity; 
+
         const cartItemElement = document.createElement('div');
         cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
 
         cartItemElement.innerHTML = `
-        
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="font-bold">${item.name}</p>
-                <p>Quantidade: ${item.quantity}</p>
-                <p class="font-medium mt-2">Valor Unitário: R$ ${item.price}</p>
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="font-bold">${item.name}</p>
+                    <p>Quantidade: ${item.quantity}</p>
+                    <p class="font-medium mt-2">Valor: R$ ${item.price} x ${item.quantity} = R$ ${totalPerItem.toFixed(2)}</p>
+                </div>
+                <button class="item-modal-remove" data-name="${item.name}">
+                    Remover
+                </button>
             </div>
-
-            <button class="item-modal-remove" data-name="${item.name}">
-                Remover
-            </button>
-        </div>
         `;
 
-        total += item.price * item.quantity;
+        total += totalPerItem;
         counterTotal += item.quantity;
 
         cartItemsContainer.appendChild(cartItemElement);
@@ -87,7 +87,6 @@ function updateModal() {
         currency: 'BRL'
     });
 }
-
 
 cartItemsContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('item-modal-remove')) {
