@@ -53,12 +53,18 @@ function addToCart(name, price) {
     updateModal()
 }
 function updateModal() {
+    const isOpen = checkRestaurantOpen();
+    if (!isOpen) {
+        customAlert("⚠️ Comunicado ⚠️", "Estamos fechados no momento, voltamos em breve!");
+        return;
+    }
+
     cartItemsContainer.innerHTML = "";
     let total = 0;
     let counterTotal = 0;
 
     cart.forEach(item => {
-        const totalPerItem = item.price * item.quantity; 
+        const totalPerItem = item.price * item.quantity;
 
         const cartItemElement = document.createElement('div');
         cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
@@ -81,12 +87,12 @@ function updateModal() {
 
         cartItemsContainer.appendChild(cartItemElement);
     });
-
     cardCounter.innerHTML = counterTotal;
     cartTotal.textContent = total.toLocaleString("pt-BR", {
         style: 'currency',
         currency: 'BRL'
     });
+
 }
 
 cartItemsContainer.addEventListener('click', (e) => {
@@ -115,16 +121,21 @@ function removeItemCart(name) {
 
 addressInput.addEventListener('input', (e) => {
     let inputValue = e.target.value;
-    
+
     if (inputValue !== "") {
         addressInput.classList.remove("border-red-500");
         warnInput.classList.add('hidden');
     }
-    
+
 });
 
 checkoutBTN.addEventListener('click', () => {
-    if(cart.length === 0) {
+    const isOpen = checkRestaurantOpen();
+    if (!isOpen) {
+        customAlert("⚠️ Comunicado ⚠️", "Estamos fechados no momento, voltamos em breve!");
+        return;
+    }
+    if (cart.length === 0) {
         Toastify({
             text: "⚠️ Seu carrinho está vazio. Por favor, adicione itens ao seu carrinho antes de finalizar o pedido.",
             style: {
@@ -140,8 +151,8 @@ checkoutBTN.addEventListener('click', () => {
         }).showToast();
         return;
     }
-    
-    if(addressInput.value === "") {
+
+    if (addressInput.value === "") {
         warnInput.classList.remove('hidden');
         addressInput.classList.add("border-red-500");
         return
@@ -149,36 +160,36 @@ checkoutBTN.addEventListener('click', () => {
 });
 
 function customAlert(title, message) {
-    var customAlertBox = document.createElement("div");
+    let customAlertBox = document.createElement("div");
     customAlertBox.className = "fixed inset-0 flex items-center justify-center";
 
-    var customAlertOverlay = document.createElement("div");
+    let customAlertOverlay = document.createElement("div");
     customAlertOverlay.className = "fixed inset-0 bg-gray-900 opacity-50";
-    customAlertOverlay.addEventListener('click', function() {
+    customAlertOverlay.addEventListener('click', function () {
         document.body.removeChild(customAlertBox);
     });
 
-    var customAlertContent = document.createElement("div");
+    let customAlertContent = document.createElement("div");
     customAlertContent.className = "bg-white rounded-lg px-4 py-9 max-w-[90%] sm:max-w-md absolute";
 
-    var horarioFuncionamento = document.createElement("p");
+    let horarioFuncionamento = document.createElement("p");
     horarioFuncionamento.className = "flex items-center justify-center text-red-600 text-sm mb-2 font-bold";
     horarioFuncionamento.innerHTML = "Horário de Funcionamento: Seg a Dom 18:00 às 22:00";
 
-    var customAlertTitle = document.createElement("h2");
+    let customAlertTitle = document.createElement("h2");
     customAlertTitle.className = "flex items-center justify-center text-lg font-semibold mb-2";
     customAlertTitle.innerHTML = title;
 
-    var customAlertMessage = document.createElement("p");
+    let customAlertMessage = document.createElement("p");
     customAlertMessage.className = "flex items-center justify-center text-gray-700 mb-2";
     customAlertMessage.innerHTML = message;
 
-    var okButton = document.createElement("button");
+    let okButton = document.createElement("button");
     okButton.className = "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 flex items-center justify-center mx-auto"; // Adicionando classes para centralizar o botão
-    var timer = 5;
+    let timer = 5;
     okButton.innerHTML = "OK (" + timer + "s)";
-    
-    var timerInterval = setInterval(function() {
+
+    let timerInterval = setInterval(function () {
         timer--;
         okButton.innerHTML = "OK (" + timer + "s)";
         if (timer === 0) {
@@ -187,7 +198,7 @@ function customAlert(title, message) {
         }
     }, 1000);
 
-    okButton.onclick = function() {
+    okButton.onclick = function () {
         clearInterval(timerInterval);
         document.body.removeChild(customAlertBox);
     };
@@ -203,7 +214,7 @@ function customAlert(title, message) {
     document.body.appendChild(customAlertBox);
 }
 
-function checkRestaurantOpen(){
+function checkRestaurantOpen() {
     const data = new Date();
     const hora = data.getHours();
     return hora >= 18 && hora < 22; //true opened
@@ -211,12 +222,11 @@ function checkRestaurantOpen(){
 
 isOpen = checkRestaurantOpen();
 
-if(isOpen){
+if (isOpen) {
     dateSpan.classList.remove('bg-red-500');
     dateSpan.classList.add('bg-green-600');
-}else{
+} else {
     dateSpan.classList.remove('bg-green-600');
     dateSpan.classList.add('bg-red-500');
-    customAlert("⚠️ Comunicado ⚠️","Estamos fechados no momento, voltamos em breve!")
 }
 //106:57
