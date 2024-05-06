@@ -53,12 +53,6 @@ function addToCart(name, price) {
     updateModal()
 }
 function updateModal() {
-    const isOpen = checkRestaurantOpen();
-    if (!isOpen) {
-        customAlert("⚠️ Comunicado ⚠️", "Estamos fechados no momento, voltamos em breve!");
-        return;
-    }
-
     cartItemsContainer.innerHTML = "";
     let total = 0;
     let counterTotal = 0;
@@ -130,11 +124,11 @@ addressInput.addEventListener('input', (e) => {
 });
 
 checkoutBTN.addEventListener('click', () => {
-    const isOpen = checkRestaurantOpen();
-    if (!isOpen) {
-        customAlert("⚠️ Comunicado ⚠️", "Estamos fechados no momento, voltamos em breve!");
-        return;
-    }
+    // const isOpen = checkRestaurantOpen();
+    // if (!isOpen) {
+    //     customAlert("⚠️ Comunicado ⚠️", "Estamos fechados no momento, voltamos em breve!");
+    //     return;
+    // }
     if (cart.length === 0) {
         Toastify({
             text: "⚠️ Seu carrinho está vazio. Por favor, adicione itens ao seu carrinho antes de finalizar o pedido.",
@@ -157,6 +151,15 @@ checkoutBTN.addEventListener('click', () => {
         addressInput.classList.add("border-red-500");
         return
     }
+
+    const messageWhatsapp = cart.map((item) => {
+        return (
+            `${item.name} Qtd: ${item.quantity}x | Preço: R$ ${item.price}`
+        );
+       
+    }).join("");
+
+    console.log(messageWhatsapp)
 });
 
 function customAlert(title, message) {
