@@ -8,6 +8,7 @@ const closeModalBTN = document.querySelector('#close-modal-btn');
 const cardCounter = document.querySelector('#cart-count');
 const addressInput = document.querySelector('#address');
 const warnInput = document.querySelector('#address-warn');
+const dateSpan = document.querySelector('#date-span');
 
 let cart = [];
 
@@ -202,7 +203,20 @@ function customAlert(title, message) {
     document.body.appendChild(customAlertBox);
 }
 
+function checkRestaurantOpen(){
+    const data = new Date();
+    const hora = data.getHours();
+    return hora >= 18 && hora < 22; //true opened
+}
 
+isOpen = checkRestaurantOpen();
 
-// customAlert("⚠️ Comunicado ⚠️","Estamos fechados no momento, voltamos em breve!")
+if(isOpen){
+    dateSpan.classList.remove('bg-red-500');
+    dateSpan.classList.add('bg-green-600');
+}else{
+    dateSpan.classList.remove('bg-green-600');
+    dateSpan.classList.add('bg-red-500');
+    customAlert("⚠️ Comunicado ⚠️","Estamos fechados no momento, voltamos em breve!")
+}
 //106:57
