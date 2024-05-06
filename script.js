@@ -229,4 +229,5 @@ if (isOpen) {
     dateSpan.classList.remove('bg-green-600');
     dateSpan.classList.add('bg-red-500');
 }
-//106:57
+
+//1:12:21 / 1:34:02
