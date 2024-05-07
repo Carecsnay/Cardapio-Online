@@ -7,7 +7,9 @@ const checkoutBTN = document.querySelector('#checkout');
 const closeModalBTN = document.querySelector('#close-modal-btn');
 const cardCounter = document.querySelector('#cart-count');
 const addressInput = document.querySelector('#address');
-const warnInput = document.querySelector('#address-warn');
+const nameInput = document.querySelector('#name')
+const warnNameInput = document.querySelector('#name-warn')
+const warnAddressInput = document.querySelector('#address-warn');
 const dateSpan = document.querySelector('#date-span');
 
 let cart = [];
@@ -112,16 +114,28 @@ function removeItemCart(name) {
         }
     }
 }
+nameInput.addEventListener('input', (e) => {
+    let inputValue = e.target.value;
+
+    if (inputValue !== "") {
+        nameInput.classList.remove("border-red-500");
+        warnNameInput.classList.add('hidden');
+    } else {
+        nameInput.classList.add("border-red-500");
+        nameInput.classList.remove("hidden");
+    }
+});
 
 addressInput.addEventListener('input', (e) => {
     let inputValue = e.target.value;
 
     if (inputValue !== "") {
         addressInput.classList.remove("border-red-500");
-        warnInput.classList.add('hidden');
+        warnAddressInput.classList.add('hidden');
     }
 
 });
+
 
 checkoutBTN.addEventListener('click', () => {
     // const isOpen = checkRestaurantOpen();
@@ -145,21 +159,36 @@ checkoutBTN.addEventListener('click', () => {
         }).showToast();
         return;
     }
+    if (nameInput.value === "") {
+        warnNameInput.classList.remove('hidden');
+        nameInput.classList.add("border-red-500");
+        return
+    }
 
     if (addressInput.value === "") {
-        warnInput.classList.remove('hidden');
+        warnAddressInput.classList.remove('hidden');
         addressInput.classList.add("border-red-500");
         return
     }
 
+    const total = cart.reduce((acc, item) => {
+        return acc + (item.price * item.quantity);
+    }, 0).toFixed(2);
+
     const messageWhatsapp = cart.map((item) => {
         return (
-            `${item.name} Qtd: ${item.quantity}x | Preço: R$ ${item.price}`
+            `${item.quantity}x ${item.name} *RS${item.price * item.quantity}*`
         );
-       
-    }).join("");
+    }).join("\n");
 
-    console.log(messageWhatsapp)
+    const name = nameInput.value;
+    const address = addressInput.value;
+    const finalMessage = `*Novo pedido de ${name}*\n----------------------------------------\n${messageWhatsapp}\n----------------------------------------\n*Total:* RS${total}\n----------------------------------------\n\n*Endereço*\n${address}`;
+    const phone = "+5586981270024";
+    const encodedMessage = encodeURIComponent(finalMessage);
+
+    window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
+
 });
 
 function customAlert(title, message) {
