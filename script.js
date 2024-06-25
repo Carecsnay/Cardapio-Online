@@ -28,6 +28,14 @@ closeModalBTN.addEventListener('click', () => {
     modal.style.display = "none";
 });
 
+function formatToBRL (amount) {
+    return amount.toLocaleString("pt-BR", {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2
+     })
+}
+
 menu.addEventListener('click', (e) => {
     let parentButton = e.target.closest(".add-to-cart-btn");
 
@@ -84,11 +92,7 @@ function updateModal() {
         cartItemsContainer.appendChild(cartItemElement);
     });
     cardCounter.innerHTML = counterTotal;
-    cartTotal.textContent = total.toLocaleString("pt-BR", {
-        style: 'currency',
-        currency: 'BRL'
-    });
-
+    cartTotal.textContent = total.formatToBRL(total);
 }
 
 cartItemsContainer.addEventListener('click', (e) => {
@@ -173,17 +177,19 @@ checkoutBTN.addEventListener('click', () => {
 
     const total = cart.reduce((acc, item) => {
         return acc + (item.price * item.quantity);
-    }, 0).toFixed(2);
+    }, 0);
+
+    const formattedTotal = formatToBRL(total);
 
     const messageWhatsapp = cart.map((item) => {
         return (
-            `${item.quantity}x ${item.name} *RS${item.price * item.quantity}*`
+            `${item.quantity}x ${item.name} *${formatToBRL(item.price * item.quantity)}*`
         );
     }).join("\n");
 
     const name = nameInput.value;
     const address = addressInput.value;
-    const finalMessage = `*Novo pedido de ${name}*\n----------------------------------------\n${messageWhatsapp}\n----------------------------------------\n*Total:* RS${total}\n----------------------------------------\n\n*Endereço*\n${address}`;
+    const finalMessage = `*Novo pedido de ${name}*\n----------------------------------------\n${messageWhatsapp}\n----------------------------------------\n*Total:* ${formattedTotal}\n----------------------------------------\n\n*Endereço*\n${address}`;
     const phone = "+5586981270024";
     const encodedMessage = encodeURIComponent(finalMessage);
 
