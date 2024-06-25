@@ -236,10 +236,10 @@
     </main>
 
     <dialog open id="modal"
-        class="bg-black/60 w-full h-full fixed top-0 left-0 z-auto items-center justify-center hidden">
-        <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[768px]">
+        class="bg-black/80 w-full h-full fixed top-0 left-0 items-center justify-center hidden z-40">
+        <div class="bg-white p-5 rounded-md md:min-w-[768px] ">
             <h2 class="font-bold text-center text-2xl mb-2">Meu carrinho</h2>
-            <div id="cart-items" class="justify-between mb-2 flex-col max-h-96 overflow-y-auto px-2"></div>
+            <div id="cart-items" class="justify-between mb-2 flex-col md:max-h-60 max-h-96 overflow-y-auto px-2"></div>
             <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
 
             <p class="font-bold mt-4">Seu nome ou apelido: </p>
@@ -256,7 +256,7 @@
         </div>
     </dialog>
 
-    <footer class="w-full bg-red-500 py-3 fixed bottom-0 z-40 flex items-center justify-center">
+    <footer class="w-full bg-red-500 py-3 fixed bottom-0 flex items-center justify-center">
         <button id='cart-btn' class="flex items-center gap-2 text-white font-bold">
             (<span id="cart-count">0</span>)
             Ver meu carrinho

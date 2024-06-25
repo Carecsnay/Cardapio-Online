@@ -665,6 +665,10 @@ video {
   left: 0px;
 }
 
+.start-1 {
+  inset-inline-start: 0.25rem;
+}
+
 .top-0 {
   top: 0px;
 }
@@ -683,6 +687,18 @@ video {
 
 .z-auto {
   z-index: auto;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.-z-10 {
+  z-index: -10;
 }
 
 .float-start {
@@ -731,6 +747,10 @@ video {
 
 .m-0 {
   margin: 0px;
+}
+
+.m-1 {
+  margin: 0.25rem;
 }
 
 .m-auto {
@@ -785,10 +805,6 @@ video {
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mt-auto {
-  margin-top: auto;
 }
 
 .box-border {
@@ -886,8 +902,20 @@ video {
   display: list-item;
 }
 
+.\!hidden {
+  display: none !important;
+}
+
 .hidden {
   display: none;
+}
+
+.h-1 {
+  height: 0.25rem;
+}
+
+.h-2 {
+  height: 0.5rem;
 }
 
 .h-28 {
@@ -898,14 +926,6 @@ video {
   height: 8rem;
 }
 
-.h-\[120px\] {
-  height: 120px;
-}
-
-.h-\[150px\] {
-  height: 150px;
-}
-
 .h-\[420px\] {
   height: 420px;
 }
@@ -914,12 +934,36 @@ video {
   height: 100%;
 }
 
-.h-\[10px\] {
-  height: 10px;
-}
-
 .max-h-96 {
   max-height: 24rem;
+}
+
+.max-h-\[\] {
+  max-height: ;
+}
+
+.max-h-\[768px\] {
+  max-height: 768px;
+}
+
+.max-h-80 {
+  max-height: 20rem;
+}
+
+.max-h-1 {
+  max-height: 0.25rem;
+}
+
+.max-h-72 {
+  max-height: 18rem;
+}
+
+.max-h-60 {
+  max-height: 15rem;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 .w-28 {
@@ -1993,6 +2037,10 @@ video {
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
 
+.bg-black\/80 {
+  background-color: rgb(0 0 0 / 0.8);
+}
+
 .bg-home {
   background-image: url('/assets/bg.png');
 }
@@ -2115,12 +2163,12 @@ video {
      object-fit: scale-down;
 }
 
-.p-5 {
-  padding: 1.25rem;
+.p-1 {
+  padding: 0.25rem;
 }
 
-.p-0 {
-  padding: 0px;
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-1 {
@@ -2696,6 +2744,10 @@ video {
   forced-color-adjust: none;
 }
 
+.\[a-zA-Z0-9\:\\\\-\\\\\._\$\] {
+  a-z-a--z0-9: \\-\\. $;
+}
+
 body{
   background-color: #F5F6F8;
 }
@@ -2802,10 +2854,6 @@ body{
 }
 
 @media (min-width: 640px) {
-  .sm\:h-\[150px\] {
-    height: 150px;
-  }
-
   .sm\:max-w-md {
     max-width: 28rem;
   }
@@ -2826,6 +2874,10 @@ body{
 }
 
 @media (min-width: 768px) {
+  .md\:max-h-60 {
+    max-height: 15rem;
+  }
+
   .md\:min-w-\[768px\] {
     min-width: 768px;
   }
