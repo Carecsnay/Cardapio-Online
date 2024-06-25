@@ -1,17 +1,24 @@
 {
   "name": "cardapio-online",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto de um cardapio online, sem banco de dados que envia mensagens automaticas para o whatsapp.",
   "main": "index.js",
   "scripts": {
     "dev": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["Cardapio, Online, Menu"],
+  "author": "Bruno Benicio",
+  "license": "MiT",
   "devDependencies": {
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.1"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   }
 }
